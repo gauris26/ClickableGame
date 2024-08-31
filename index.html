@@ -6,13 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+
+        .darkModeButton {
+            float: right;
+        }
+
+        .darkModeActive {
+            background-color: #0c1618;
+            color: #84c754;            
+        }
+
         #gameArea {
             width: 300px;
             height: 300px;
             border: 2px solid #333;
             position: relative;
             overflow: hidden;
-        }
+        }        
 
         #clickTarget {
             width: 50px;
@@ -28,10 +38,11 @@
     </style>
 </head>
 
-<body>
+<body id="body" class="">
     <h1>Haz clic en el cuadrado rojo</h1>
     <input type="number" id="timeout" name="timeout" min="1" max="100" value="30" />
     <button id="setGameTimeout">Fijar temporizador</button>
+    <button id="setDarkModeButton" class="darkModeButton">Activar Modo Oscuro</button>
     <hr />
     <div id="gameArea">
         <div id="clickTarget"></div>
