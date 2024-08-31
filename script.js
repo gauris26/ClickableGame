@@ -43,6 +43,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
         clickTarget.style.left = randomX + 'px';
         clickTarget.style.top = randomY + 'px';
+
+        /* Aqui agregue esto para que se haga mas pequeño a medida que se incremente la puntuacion */
+        const newSize = Math.max(20, 50 - score * 2);
+        clickTarget.style.width = newSize + 'px';
+        clickTarget.style.height = newSize + 'px';
     }
 
     function updateTimer() {
