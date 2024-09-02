@@ -1,3 +1,11 @@
+.darkModeButton {
+    float: right;
+}
+
+.darkModeActive {
+    background-color: #0c1618;
+    color: #84c754;            
+}
 
 #gameArea {
     width: 300px;
