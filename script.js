@@ -6,12 +6,17 @@ document.addEventListener('DOMContentLoaded', function () {
     const messageDisplay = document.getElementById('mensaje');
     const setGameTimeout = document.getElementById('setGameTimeout');
     const timeoutInput = document.getElementById('timeout');
-    const startGame = document.getElementById('startGame');
+    const startGame = document.getElementById('startGame');    
 
+    const setDarkModeButton = document.getElementById('setDarkModeButton');
+    
     let refreshIntervalId = null;
     let score = 0;
     let timeLeft = 30;
-
+    let isDarkModeActive = false;
+    
+    setDarkModeButton.addEventListener('click', toggleDarkMode);
+    
     setGameTimeout.addEventListener('click', function () {
         let timeout = timeoutInput.value;
         if (timeout) {
@@ -26,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
         startGame.disabled = true;
         refreshIntervalId = setInterval(updateTimer, 1000);
     });
-
+    
     clickTarget.addEventListener('click', function () {
         if (refreshIntervalId != null) {
             score++;
@@ -40,11 +45,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const maxY = gameArea.clientHeight - clickTarget.clientHeight;
         const randomX = Math.random() * maxX;
         const randomY = Math.random() * maxY;
-
+        
         clickTarget.style.left = randomX + 'px';
         clickTarget.style.top = randomY + 'px';
     }
-
+    
     function updateTimer() {
         if (timeLeft > 0) {
             timeLeft--;
@@ -60,6 +65,26 @@ document.addEventListener('DOMContentLoaded', function () {
             let mensaje = `Tiempo agotado! Tu puntuación final es: ${score}`;
             messageDisplay.textContent = mensaje;
             alert(mensaje);
+        }
+    }
+
+    function toggleDarkMode() {
+        const bodyElement = document.getElementById('body');
+
+        if (isDarkModeActive === false) {
+            bodyElement.classList.add('darkModeActive');
+            gameArea.style.border = '2px solid #84c754';
+            setDarkModeButton.textContent = 'Desactivar Modo Oscuro'
+            isDarkModeActive = true;
+            return;
+        }
+
+        if (isDarkModeActive === true) {
+            bodyElement.classList.remove('darkModeActive');
+            gameArea.style.border = '2px solid #333';
+            setDarkModeButton.textContent = 'Activar Modo Oscuro';
+            isDarkModeActive = false;
+            return;
         }
     }
 });
