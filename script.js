@@ -41,8 +41,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function moveTarget() {
-        const maxX = gameArea.clientWidth - clickTarget.clientWidth;
-        const maxY = gameArea.clientHeight - clickTarget.clientHeight;
+        const maxX = gameArea.clientWidth - (clickTarget.clientWidth - 25);
+        const maxY = gameArea.clientHeight - (clickTarget.clientHeight - 25);
         const randomX = Math.random() * maxX;
         const randomY = Math.random() * maxY;
         
