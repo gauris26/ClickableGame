@@ -9,6 +9,7 @@ body {
     text-align: center;
     background-color: #85FFBD;
     background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
+    transition: background-color 0.3s, color 0.3s; /* Añadido una mas transición suave para cuando se cambia al modo oscuro */
 }
 
 h1 {
@@ -21,7 +22,9 @@ h1 {
 
 .darkModeActive {
     background-color: #0c1618;
-    color: #84c754;            
+    background-image: none; /* elimina el degradado para que funcione el modo oscuro, jaja*/
+    color: #84c754;
+    transition: background-color 0.3s, color 0.3s; /* Añadido transición suave */
 }
 
 #gameArea {
@@ -31,7 +34,7 @@ h1 {
     position: relative;
     overflow: hidden;
     margin: auto;
-  
+    transition: border 0.3s; /* Transición suave*/
 }
 
 #clickTarget {
@@ -40,7 +43,8 @@ h1 {
     background-color: rgb(23, 126, 23);
     position: absolute;
     cursor: pointer;
-    border-radius: 100%;
+    border-radius: 50%; /* Cambio de 100% a 50% */
+    transition: background-color 0.3s; /* Transición suave para el cambio de color en modo oscuro */
 }
 
 #timer {
@@ -55,10 +59,21 @@ button {
     background-color: rgb(7, 165, 7);
     border-radius: 3px;
     border: none;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; 
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    cursor: pointer;
+    transition: background-color 0.5s, transform 0.2s; /* Transición suave*/
+}
+
+.darkModeActive button {
+    background-color: #444;
+    color: #d8febe;
 }
 
 button:hover {
     background-color: rgb(4, 56, 4);
-    transition: all .5s;
+    transform: scale(1.05); 
+}
+
+.darkModeActive #clickTarget {
+    background-color: #5ebd19; /*color mas chillón*/
 }
