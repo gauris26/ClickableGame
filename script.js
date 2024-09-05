@@ -6,22 +6,33 @@ document.addEventListener('DOMContentLoaded', function () {
     const messageDisplay = document.getElementById('mensaje');
     const setGameTimeout = document.getElementById('setGameTimeout');
     const timeoutInput = document.getElementById('timeout');
-    const startGame = document.getElementById('startGame');    
-
+    const startGame = document.getElementById('startGame');
     const setDarkModeButton = document.getElementById('setDarkModeButton');
-    
+
     let refreshIntervalId = null;
     let score = 0;
     let timeLeft = 30;
     let isDarkModeActive = false;
-    
+
+    // Cambios en el DOM 
+    document.title = "Juego de Clics"; 
+    document.body.id = "body";
+
+    // aqui se agrega una etiqueta <label> a input tiempo
+    const labelTimeout = document.createElement('label');
+    labelTimeout.setAttribute('for', 'timeout');
+    labelTimeout.textContent = "Tiempo (segundos): ";
+    timeoutInput.parentNode.insertBefore(labelTimeout, timeoutInput);
+
     setDarkModeButton.addEventListener('click', toggleDarkMode);
-    
+
     setGameTimeout.addEventListener('click', function () {
-        let timeout = timeoutInput.value;
-        if (timeout) {
-            timeLeft = parseInt(timeout);
+        let timeout = parseInt(timeoutInput.value);
+        if (!isNaN(timeout) && timeout > 0) {
+            timeLeft = timeout;
             timeLeftDisplay.textContent = timeout;
+        } else {
+            alert('Por favor, ingresa un número válido');
         }
     });
 
@@ -29,9 +40,12 @@ document.addEventListener('DOMContentLoaded', function () {
         timeoutInput.disabled = true;
         setGameTimeout.disabled = true;
         startGame.disabled = true;
+        score = 0;
+        scoreDisplay.textContent = score;
+        messageDisplay.textContent = '';
         refreshIntervalId = setInterval(updateTimer, 1000);
     });
-    
+
     clickTarget.addEventListener('click', function () {
         if (refreshIntervalId != null) {
             score++;
@@ -45,11 +59,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const maxY = gameArea.clientHeight - clickTarget.clientHeight;
         const randomX = Math.random() * maxX;
         const randomY = Math.random() * maxY;
-        
+
         clickTarget.style.left = randomX + 'px';
         clickTarget.style.top = randomY + 'px';
     }
-    
+
     function updateTimer() {
         if (timeLeft > 0) {
             timeLeft--;
@@ -62,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
             timeoutInput.disabled = false;
             setGameTimeout.disabled = false;
             startGame.disabled = false;
-            let mensaje = `Tiempo agotado! Tu puntuación final es: ${score}`;
+            let mensaje = `¡Tiempo agotado! Tu puntuación final es: ${score}`;
             messageDisplay.textContent = mensaje;
             alert(mensaje);
         }
@@ -71,20 +85,9 @@ document.addEventListener('DOMContentLoaded', function () {
     function toggleDarkMode() {
         const bodyElement = document.getElementById('body');
 
-        if (isDarkModeActive === false) {
-            bodyElement.classList.add('darkModeActive');
-            gameArea.style.border = '2px solid #84c754';
-            setDarkModeButton.textContent = 'Desactivar Modo Oscuro'
-            isDarkModeActive = true;
-            return;
-        }
-
-        if (isDarkModeActive === true) {
-            bodyElement.classList.remove('darkModeActive');
-            gameArea.style.border = '2px solid #333';
-            setDarkModeButton.textContent = 'Activar Modo Oscuro';
-            isDarkModeActive = false;
-            return;
-        }
+        isDarkModeActive = !isDarkModeActive;
+        bodyElement.classList.toggle('darkModeActive', isDarkModeActive);
+        gameArea.style.border = isDarkModeActive ? '2px solid #84c754' : '2px solid #333';
+        setDarkModeButton.textContent = isDarkModeActive ? 'Desactivar Modo Oscuro' : 'Activar Modo Oscuro';
     }
 });
