@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Document</title>
-  </head>
-
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Document</title>
+</head>
+<body id="body" class="">
+  <header>
+    <h1>Haz clic en el cuadrado rojo</h1>
+    <button id="setDarkModeButton" class="darkModeButton">Activar Modo Oscuro</button>
+  </header>
+  <section class="controls">
+    <h3>Temporizador</h3>
+    <input class="counter" type="number" id="timeout" name="timeout" min="1" max="100" value="30" />
+    <button id="setGameTimeout">Fijar temporizador</button>
+  </section>
+  <hr />
+  <section class="gamescenario">
   <body>
     <h1>Haz clic en el circulo verde</h1>
-    <input
-      type="number"
-      id="timeout"
-      name="timeout"
-      min="1"
-      max="100"
-      value="30"
-    />
+    <input type="number" id="timeout" name="timeout" min="1" max="100" value="30"/>
     <button id="setGameTimeout">Fijar temporizador</button>
     <button id="setDarkModeButton" class="darkModeButton">
       Activar Modo Oscuro
@@ -25,10 +29,13 @@
     <div id="gameArea">
       <div id="clickTarget"></div>
     </div>
-    <p>Puntuación: <span id="score">0</span></p>
-    <p id="timer">Tiempo restante: <span id="timeLeft">30</span></p>
-    <button id="startGame">Iniciar temporizador</button>
-    <p id="mensaje"></p>
-    <script src="script.js"></script>
-  </body>
+    <div class="panel">
+      <p>Puntuación: <span id="score">0</span></p>
+      <p id="timer">Tiempo restante: <span id="timeLeft">30</span></p>
+      <button id="startGame">Iniciar temporizador</button>
+      <p id="mensaje"></p>
+    </div>
+  </section>
+  <script src="script.js"></script>
+</body>
 </html>
